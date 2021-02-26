@@ -4,8 +4,6 @@ import movements.NormalMovement;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import java.util.Random;
-
 import static outils.RandomNumber.generateRandomIntIntRange;
 
 public class Rectangle extends Shape implements NormalMovement {
@@ -17,8 +15,9 @@ public class Rectangle extends Shape implements NormalMovement {
 
     public void draw(Graphics g) {
         super.draw(g);
-        g.fillRect(x, y, 10, 10);
+        g.fillRect(x, y, width, height);
     }
+
     public void inverse(){
         switch (movementDirection){
             case NORTH: movementDirection = CardinalPoints.SOUTH;break;

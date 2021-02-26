@@ -1,8 +1,8 @@
 package movements;
 
 public interface NormalMovement {
-    public void moveNorth();
-    public void moveSouth();
-    public void moveWest();
-    public void moveEast();
+     void moveNorth();
+     void moveSouth();
+     void moveWest();
+     void moveEast();
 }

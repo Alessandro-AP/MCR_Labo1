@@ -16,7 +16,7 @@ public class Circle extends Shape implements DiagonalMovement {
 
     public void draw(Graphics g) {
         super.draw(g);
-        g.fillOval(x, y, 10, 10);
+        g.fillOval(x, y, width, height);
     }
 
     public void inverse(){
@@ -33,7 +33,6 @@ public class Circle extends Shape implements DiagonalMovement {
             }
         }
 
-
     @Override
     public void move() {
         if(x < 0 || y < 0 || x > 1000 || y > 1000 )
@@ -49,7 +48,6 @@ public class Circle extends Shape implements DiagonalMovement {
             case SOUTHEAST: moveSouthEast();break;
         }
     }
-
 
     @Override
     public void moveNorthWest() {
