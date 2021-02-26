@@ -2,12 +2,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 
-public class Circle {
-	int x, y, width, height;
+public class Circle extends Form {
 
-    public Circle(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Circle(int x, int y, int width, int height, Color c) {
+        super(x, y, width, height, c);
     }
 
     public void draw(Graphics g) {
