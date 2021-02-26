@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static outils.RandomNumber.generateRandomIntIntRange;
+
 public class Window extends JPanel implements ActionListener {
     //List of shapes
-    private List<Form> shapes = new ArrayList<>();
+    private List<Shape> shapes = new ArrayList<>();
 
     //For movements
     Timer tm = new Timer(5,this);
@@ -23,7 +25,7 @@ public class Window extends JPanel implements ActionListener {
         for(int j=0;j<200;++j){
             int x = generateRandomIntIntRange(20,980);
             int y = generateRandomIntIntRange(20,980);
-            shapes.add(new Circle(x,y,30,30,Color.green));
+            shapes.add(new Circle(x,y,30,30,Color.WHITE));
             shapes.add(new Rectangle(y, x,30,30,Color.red));
         }
     }
@@ -32,26 +34,26 @@ public class Window extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (Object s : shapes) {
+            if(s instanceof Rectangle)
+                ((Rectangle) s).draw(g);
+            /*
             if (s instanceof Circle){
                 ((Circle) s).draw(g);
             }else if(s instanceof Rectangle){
                 ((Rectangle) s).draw(g);
-            }
+            }*/
         }
         tm.start();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (Form form : shapes) {
-            form.update();
+        for (Shape shape : shapes) {
+            shape.move();
         }
         repaint();
     }
-    static int generateRandomIntIntRange(int min, int max) {
-        Random r = new Random();
-        return r.nextInt((max - min) + 1) + min;
-    }
+
 
 
 }
