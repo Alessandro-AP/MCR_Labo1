@@ -8,7 +8,7 @@ abstract public class Shape {
     int velocity = 2;
     CardinalPoints movementDirection;
 
-    public Shape(int x, int y, int width, int height, Color c) {
+    public Shape(int x, int y, int width, int height, Color color) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -16,6 +16,6 @@ abstract public class Shape {
         this.color = color;
     }
 
-    public void draw(Graphics g){ g.setColor(Color.red);}
+    public void draw(Graphics g){ g.setColor(color);}
     public void move(){}
 }

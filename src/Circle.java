@@ -18,71 +18,80 @@ public class Circle extends Shape implements DiagonalMovement {
         super.draw(g);
         g.fillOval(x, y, 10, 10);
     }
-/*
+
+    public void inverse(){
+            switch (movementDirection){
+                case NORTH    : movementDirection = CardinalPoints.SOUTH;    break;
+                case SOUTH    : movementDirection = CardinalPoints.NORTH;    break;
+                case WEST     : movementDirection = CardinalPoints.EAST;     break;
+                case EAST     : movementDirection = CardinalPoints.WEST;     break;
+                case NORTHWEST: movementDirection = CardinalPoints.NORTHEAST;break;
+                case NORTHEAST: movementDirection = CardinalPoints.NORTHWEST;break;
+                case SOUTHWEST: movementDirection = CardinalPoints.SOUTHEAST;break;
+                case SOUTHEAST: movementDirection = CardinalPoints.SOUTHWEST;break;
+
+            }
+        }
+
+
     @Override
     public void move() {
-        switch(movementDirection) {
-            case 0:
-                movementsX();
-                break;
-            case 1:
-                movementsY();
-                break;
-            case 2:
-
-                break;
-            case 3:
-                // code block
-                break;
-            case 4:
-                // code block
-                break;
-            case 5:
-                // code block
-                break;
-            default:
-                return;
+        if(x < 0 || y < 0 || x > 1000 || y > 1000 )
+            inverse();
+        switch (movementDirection){
+            case NORTH: moveNorth();break;
+            case SOUTH: moveSouth();break;
+            case WEST : moveWest() ;break;
+            case EAST : moveEast() ;break;
+            case NORTHWEST: moveNorthWest();break;
+            case NORTHEAST: moveNorthEast();break;
+            case SOUTHWEST: moveSouthWest();break;
+            case SOUTHEAST: moveSouthEast();break;
         }
     }
-*/
+
 
     @Override
     public void moveNorthWest() {
-
+        y-= velocity;
+        x-= velocity;
     }
 
     @Override
     public void moveNorthEast() {
-
+        y-= velocity;
+        x+= velocity;
     }
 
     @Override
     public void moveSouthWest() {
-
+        y+= velocity;
+        x-= velocity;
     }
 
     @Override
     public void moveSouthEast() {
-
+        y+= velocity;
+        x+= velocity;
     }
 
     @Override
     public void moveNorth() {
-
+        y-= velocity;
     }
 
     @Override
     public void moveSouth() {
-
+        y+= velocity;
     }
 
     @Override
     public void moveWest() {
-
+        x-= velocity;
     }
 
     @Override
     public void moveEast() {
-
+        x+= velocity;
     }
 }

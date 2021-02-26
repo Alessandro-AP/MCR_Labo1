@@ -25,8 +25,8 @@ public class Window extends JPanel implements ActionListener {
         for(int j=0;j<200;++j){
             int x = generateRandomIntIntRange(20,980);
             int y = generateRandomIntIntRange(20,980);
-            shapes.add(new Circle(x,y,30,30,Color.WHITE));
-            shapes.add(new Rectangle(y, x,30,30,Color.red));
+            shapes.add(new Circle(x,y,30,30,Color.GREEN));
+            shapes.add(new Rectangle(y, x,30,30,Color.RED));
         }
     }
 
@@ -34,14 +34,14 @@ public class Window extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (Object s : shapes) {
-            if(s instanceof Rectangle)
-                ((Rectangle) s).draw(g);
-            /*
+          /*  if(s instanceof Rectangle)
+                ((Rectangle) s).draw(g);*/
+
             if (s instanceof Circle){
                 ((Circle) s).draw(g);
             }else if(s instanceof Rectangle){
                 ((Rectangle) s).draw(g);
-            }*/
+            }
         }
         tm.start();
     }
