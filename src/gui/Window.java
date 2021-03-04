@@ -2,8 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.LinkedList;
 
 import static utils.RandomInt.randomInt;
@@ -39,6 +38,14 @@ public class Window extends JFrame implements Displayer, ActionListener {
         generateRandomShapes();
         Timer timer = new Timer(5, this);
         timer.start();
+
+        // tentative de remettre les formes dans la fenetre lors d'une diminution de la fenetre
+//        addComponentListener(new ComponentAdapter() {
+//            @Override
+//            public void componentResized(ComponentEvent e) {
+//                repaint();
+//            }
+//        });
     }
 
     public static Window getInstance() {
@@ -60,8 +67,8 @@ public class Window extends JFrame implements Displayer, ActionListener {
     }
 
     public void repaint() {
-//        super.repaint();
-        panel.repaint();
+        super.repaint();
+//        panel.repaint();
     }
 
     public void setTitle(String title) {
