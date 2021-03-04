@@ -2,65 +2,52 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.LinkedList;
 
-import static utils.RandomInt.randomInt;
+public class Window extends JFrame implements Displayer {
 
-public class Window extends JPanel implements ActionListener {
-    final private int heigth, width;
-    LinkedList<Shape> elements = new LinkedList<>();
-    Timer timer;
+    private static final Window instance = new Window(500, 600);
 
-    public Window(int width, int heigth) {
+    private final Panel panel;
+
+    private Window(int width, int heigth) {
         if (width < 1 || heigth < 1)
             throw new IllegalArgumentException("Window size must be positive");
-        this.width = width;
-        this.heigth = heigth;
-//        setSize(width, heigth);
+        setSize(width, heigth);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel = new Panel();
+        add(panel);
+        pack();
+        setVisible(true);
+        int t = panel.getHeight();
+        int t2 = panel.getWidth();
 
-        generateRandomShapes();
-
-        timer = new Timer(5, this);
-        timer.start();
     }
 
-    private void generateRandomShapes() {
-        int nbElemMin = 5,
-            nbElemMax = 100,
-            elemSizeMax = 50,
-            elemSizeMin = 5,
-            velMin = 1,
-            velMax = 5;
-
-        for (int i = 0; i < randomInt(nbElemMin, nbElemMax); ++i) {
-            elements.add(new Square(randomInt(0, width - elemSizeMax), randomInt(0, heigth - elemSizeMax),
-                    randomInt(velMin, velMax), randomInt(velMin, velMax),
-                    Color.yellow, randomInt(elemSizeMin, elemSizeMax)));
-
-            elements.add(new Circle(randomInt(0, width - elemSizeMax), randomInt(0, heigth - elemSizeMax),
-                    randomInt(velMin, velMax), randomInt(velMin, velMax),
-                    Color.blue, randomInt(elemSizeMin, elemSizeMax)));
-        }
+    public static Window getInstance() {
+        if (instance == null)
+            throw new RuntimeException("Window already exists");
+        return instance;
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        for (Shape s : elements) {
-            s.draw(g);
-        }
+    public int getWidth() {
+        return super.getWidth();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        for (Shape s : elements) {
-            int xMax = width - s.width();
-            int yMax = heigth - s.heigth();
-            s.updateDirection(xMax, yMax);
-        }
-        repaint();
+    public int getHeight() {
+        return super.getHeight();
     }
 
+    public Graphics2D getGraphics() {
+        return (Graphics2D) super.getGraphics();
+    }
+
+    public void repaint() {
+//        super.repaint();
+        panel.repaint();
+    }
+
+    public void setTitle(String title) {
+        super.setTitle(title);
+    }
 }
