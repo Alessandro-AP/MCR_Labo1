@@ -12,7 +12,7 @@ public class Window extends JFrame implements Displayer, ActionListener {
     private static final Window instance = new Window(500, 600);
 
     private final JPanel panel;
-    private final LinkedList<Shape> elements = new LinkedList<>();
+    private final LinkedList<Form> elements = new LinkedList<>();
 
     private Window(int width, int heigth) {
         if (width < 1 || heigth < 1)
@@ -27,7 +27,7 @@ public class Window extends JFrame implements Displayer, ActionListener {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                for (Shape s : elements) {
+                for (Form s : elements) {
                     s.draw(g);
                 }
             }
@@ -99,7 +99,7 @@ public class Window extends JFrame implements Displayer, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (Shape s : elements) {
+        for (Form s : elements) {
             int xMax = panel.getWidth() - s.width();
             int yMax = panel.getHeight() - s.heigth();
             s.updateDirection(xMax, yMax);

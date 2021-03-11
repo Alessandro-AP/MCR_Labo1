@@ -2,12 +2,12 @@ package gui;
 
 import java.awt.*;
 
-public abstract class Shape {
+public abstract class Form {
     protected int x, y;
     private int xVel, yVel;
     final private Color color;
 
-    public Shape(int x, int y, int xVel, int yVel, Color color) {
+    public Form(int x, int y, int xVel, int yVel, Color color) {
         this.x = x;
         this.y = y;
         this.xVel = xVel;

@@ -2,7 +2,7 @@ package gui;
 
 import java.awt.*;
 
-public class Square extends Shape {
+public class Square extends Form {
     private int side;
 
     public Square(int x, int y, int xVel, int yVel, Color color, int side) {

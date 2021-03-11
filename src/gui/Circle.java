@@ -2,7 +2,7 @@ package gui;
 
 import java.awt.*;
 
-public class Circle extends Shape {
+public class Circle extends Form {
     private int diameter;
 
     public Circle(int x, int y, int xVel, int yVel, Color color, int diameter) {
