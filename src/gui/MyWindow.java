@@ -7,14 +7,14 @@ import java.util.LinkedList;
 
 import static utils.RandomInt.randomInt;
 
-public class Window extends JFrame implements Displayer, ActionListener {
+public class MyWindow extends JFrame implements Displayer, ActionListener {
 
-    private static final Window instance = new Window(500, 600);
+    private static final MyWindow instance = new MyWindow(500, 600);
 
     private final JPanel panel;
     private final LinkedList<Form> elements = new LinkedList<>();
 
-    private Window(int width, int heigth) {
+    private MyWindow(int width, int heigth) {
         if (width < 1 || heigth < 1)
             throw new IllegalArgumentException("Window size must be positive");
 
@@ -48,7 +48,7 @@ public class Window extends JFrame implements Displayer, ActionListener {
 //        });
     }
 
-    public static Window getInstance() {
+    public static MyWindow getInstance() {
         if (instance == null)
             throw new RuntimeException("Window already exists");
         return instance;

@@ -1,8 +1,8 @@
-import gui.Window;
+import gui.MyWindow;
 
 public class Main {
     public static void main(String[] args) {
-        Window w = Window.getInstance();
+        MyWindow w = MyWindow.getInstance();
 //        w.setTitle("Bouncers");
 //        w.setTitle("Rename");
 
