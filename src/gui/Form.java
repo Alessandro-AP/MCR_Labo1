@@ -8,7 +8,7 @@ public abstract class Form implements Bouncable {
     private int xVel, yVel;
     final private Color color;
     //    private Shape shape;
-    private Renderer renderer = new FormRenderer(); // passer au constructeur pour recevoir le bon renderer
+    private Renderer renderer = new FillRenderer2D(); // passer au constructeur pour recevoir le bon renderer
     private Graphics2D g2d;
 
     // ajouter le renderer ?
@@ -29,19 +29,12 @@ public abstract class Form implements Bouncable {
         return heigth;
     }
 
-    public void setG(MyWindow w) {
-        g2d = w.getGraphics();
+    public void setG(Graphics g) {
+        g2d = (Graphics2D) g;
     }
 
     @Override
-    public void draw() {
-        renderer.display(g2d, this);
-    }
-
-    //    @Override
-    public void draw(Graphics g) {
-        g.setColor(color);
-    }
+    public void draw() { renderer.display(g2d, this); }
 
     @Override
     public void move() {

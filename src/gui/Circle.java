@@ -11,13 +11,6 @@ public class Circle extends Form {
 //            throw new IllegalArgumentException();
     }
 
-
-
-    public void draw(Graphics g) {
-        super.draw(g);
-        g.fillOval(super.x, super.y, width, heigth);
-    }
-
     @Override
     public Shape getShape() {
         return new Ellipse2D.Double( x, y, width, heigth);

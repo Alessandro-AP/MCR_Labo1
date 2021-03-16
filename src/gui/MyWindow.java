@@ -38,7 +38,8 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
                     return;
                     super.paintComponent(g);
                     for (Form s : elements) {
-                        s.draw(g);
+                        s.setG(g);
+                        s.draw();
                     }
                 }
 

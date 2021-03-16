@@ -49,7 +49,6 @@ public class BouncersApp {
     public void run() {
 //        MyWindow w = MyWindow.getInstance();
         w.setTitle("Bouncers");
-
         w.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {

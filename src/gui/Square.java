@@ -11,13 +11,6 @@ public class Square extends Form {
             throw new IllegalArgumentException();
     }
 
-
-    public void draw(Graphics g) {
-//        Graphics2D g2 = (Graphics2D) g;
-        super.draw(g);
-        g.fillRect(x, y, width, heigth);
-    }
-
     @Override
     public Shape getShape() {
         return new Rectangle(x, y, width, heigth);
