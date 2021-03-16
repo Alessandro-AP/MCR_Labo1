@@ -1,26 +1,25 @@
 package gui;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 public class Circle extends Form {
-    private int diameter;
 
-    public Circle(int x, int y, int xVel, int yVel, Color color, int diameter) {
-        super(x, y, xVel, yVel, color);
-        this.diameter = diameter;
+    public Circle(int heigth, int width, int x, int y, int xVel, int yVel, Color color) {
+        super(heigth, width, x, y, xVel, yVel, color);
+//        if (heigth != width)
+//            throw new IllegalArgumentException();
     }
 
-    @Override
-    public int width() {
-        return diameter;
-    }
-    @Override
-    public int heigth() {
-        return diameter;
-    }
+
 
     public void draw(Graphics g) {
         super.draw(g);
-        g.fillOval(super.x, super.y, diameter, diameter);
+        g.fillOval(super.x, super.y, width, heigth);
+    }
+
+    @Override
+    public Shape getShape() {
+        return new Ellipse2D.Double( x, y, width, heigth);
     }
 }

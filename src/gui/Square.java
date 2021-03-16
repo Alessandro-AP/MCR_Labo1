@@ -1,26 +1,25 @@
 package gui;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public class Square extends Form {
-    private int side;
 
-    public Square(int x, int y, int xVel, int yVel, Color color, int side) {
-        super(x, y, xVel, yVel, color);
-        this.side = side;
+    public Square(int heigth, int width, int x, int y, int xVel, int yVel, Color color) {
+        super(heigth, width, x, y, xVel, yVel, color);
+        if (heigth != width)
+            throw new IllegalArgumentException();
     }
 
-    @Override
-    public int width() {
-        return side;
-    }
-    @Override
-    public int heigth() {
-        return side;
-    }
 
     public void draw(Graphics g) {
+//        Graphics2D g2 = (Graphics2D) g;
         super.draw(g);
-        g.fillRect(super.x, super.y, side, side);
+        g.fillRect(x, y, width, heigth);
+    }
+
+    @Override
+    public Shape getShape() {
+        return new Rectangle(x, y, width, heigth);
     }
 }
