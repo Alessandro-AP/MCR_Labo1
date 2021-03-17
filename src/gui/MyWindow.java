@@ -23,8 +23,6 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
     }
 
     private MyWindow(int width, int heigth) {
-        if (width < 1 || heigth < 1)
-            throw new IllegalArgumentException("MyWindow size must be positive");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(width, heigth);

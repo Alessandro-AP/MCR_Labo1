@@ -34,7 +34,7 @@ public class BouncersApp {
 
                     // Clear window
                     case KeyEvent.VK_E:
-                        w.resetWindow();;
+                        w.resetWindow();
                         break;
 
                     // Generate 10 filled squares and circles

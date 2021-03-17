@@ -7,8 +7,8 @@ import gui.MyWindow;
 
 public interface FormFactory {
 
-    final int elemSizeMax = 50,
-              elemSizeMin = 10;
+    int elemSizeMax = 50,
+        elemSizeMin = 10;
 
     MyWindow w = MyWindow.getInstance();
 
