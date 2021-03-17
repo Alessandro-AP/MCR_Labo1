@@ -1,43 +1,29 @@
 package shapes;
 
-import fabrication.FillRenderer2D;
 import fabrication.Renderer;
-
 import java.awt.*;
+import static utils.RandomInt.randomInt;
 
 public abstract class Form implements Bouncable {
+
     protected int x, y;
     protected int heigth, width;
-    private int xVel, yVel;
-    final private Color color;
-    //    private Shape shape;
-    private Renderer renderer = new FillRenderer2D(); // passer au constructeur pour recevoir le bon renderer
-    private Graphics2D g2d;
 
-    // ajouter le renderer ?
-    public Form(int heigth, int width, int x, int y, int xVel, int yVel, Color color) {
+    private int xVel = randomInt(-3,3),
+                yVel = randomInt(-3,3);
+
+    final private Color color;
+    protected Renderer renderer;
+    protected Graphics2D g2d;
+
+
+    public Form(int heigth, int width, int x, int y, Color color) {
         this.heigth = heigth;
         this.width = width;
         this.x = x;
         this.y = y;
-        this.xVel = xVel;
-        this.yVel = yVel;
         this.color = color;
     }
-
-    public int width() {
-        return width;
-    }
-    public int heigth() {
-        return heigth;
-    }
-
-    public void setG(Graphics g) {
-        g2d = (Graphics2D) g;
-    }
-
-    @Override
-    public void draw() { renderer.display(g2d, this); }
 
     @Override
     public void move() {
@@ -45,25 +31,37 @@ public abstract class Form implements Bouncable {
         y += yVel;
     }
 
+    //-----------------------SETTERS---------------------------------
+
+    public void setGraphics2D(Graphics g) {
+        g2d = (Graphics2D) g;
+    }
+    public void setRenderer(Renderer renderer) {
+        this.renderer = renderer;
+    }
     public void setDirection(int xMax, int yMax) {
         if (x < 0 || x >= xMax)
             xVel = -xVel;
         if (y < 0 || y >= yMax)
             yVel = -yVel;
     }
+    public void setVelocity(int vel){
+        xVel = vel;
+        yVel = vel;
+    }
 
+    //-----------------------GETTERS---------------------------------
     @Override
     public Color getColor() {
         return color;
     }
-
-//    @Override
-//    public Shape getShape() {
-//        return shape;
-//    }
-
-//    protected void setShape(Shape shape) {
-//        this.shape = shape;
-//    }
+    public int width() {
+        return width;
+    }
+    public int heigth() {
+        return heigth;
+    }
+//    public Renderer getRenderer(){return renderer;}
+//    public Graphics2D getGraphics2D(){return g2d;}
 
 }

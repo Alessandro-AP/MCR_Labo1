@@ -14,13 +14,14 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
     private final JPanel panel;
     Timer timer;
 
-    public void addForm(Form v) {
-        elements.add(v);
-    }
-
-    public void setElements(LinkedList<?> list){
+    public void addElements(LinkedList<?> list){
         elements.addAll(list);
     }
+
+    public void addElement(Object elem){
+        elements.add(elem);
+    }
+
     private MyWindow(int width, int heigth) {
         if (width < 1 || heigth < 1)
             throw new IllegalArgumentException("MyWindow size must be positive");
@@ -36,12 +37,13 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
                     return;
                     super.paintComponent(g);
                     for (Object s : elements) {
-                        ((Form) s).setG(g);
+                        ((Form) s).setGraphics2D(g);
                         ((Form) s).draw();
                     }
                 }
 
         };
+
         add(panel);
         setVisible(true);
 
@@ -62,6 +64,7 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
         elements.clear();
         if(timer != null)
             timer.stop();
+        repaint();
     }
 
     public void repaint() { super.repaint(); }
@@ -83,23 +86,20 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
         }
         repaint();
     }
-    /* GETTERS*/
+
+    //--------------------- GETTERS-----------------------------
     public int getWidth() {
         return super.getWidth();
     }
-
     public int getHeight() {
         return super.getHeight();
     }
-
     public int getPanelWidth() {
         return panel.getWidth();
     }
-
     public int getPanelHeight() {
         return panel.getHeight();
     }
-
     public Graphics2D getGraphics() {
         return (Graphics2D) super.getGraphics();
     }

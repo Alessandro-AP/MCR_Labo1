@@ -12,8 +12,7 @@ public class BouncersApp {
 
     MyWindow w = MyWindow.getInstance();
 
-    void fabricateFilled(){
-        FilledFormFactory factory = new FilledFormFactory();
+    void fabricate(FormFactory factory){
         for(int i =0; i < 10;++i) {
             list.add(factory.createSquare());
             list.add(factory.createCircle());
@@ -40,12 +39,18 @@ public class BouncersApp {
 
                     // Generate 10 filled squares and circles
                     case KeyEvent.VK_F:
-                        fabricateFilled();
-                        w.setElements(list);
+                        fabricate(new FilledFormFactory());
+                        w.addElements(list);
+                        list.clear();
                         w.startTimer();
                         break;
+
                     // Generate 10 only border squares and circles
                     case KeyEvent.VK_B:
+                        fabricate(new BorderFormFactory());
+                        w.addElements(list);
+                        list.clear();
+                        w.startTimer();
                         break;
 
                     //Exit

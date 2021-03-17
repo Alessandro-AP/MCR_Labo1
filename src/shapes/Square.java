@@ -2,10 +2,10 @@ package shapes;
 
 import java.awt.*;
 
-public class Square extends Form {
+public abstract class Square extends Form {
 
-    public Square(int heigth, int width, int x, int y, int xVel, int yVel, Color color) {
-        super(heigth, width, x, y, xVel, yVel, color);
+    public Square(int heigth, int width, int x, int y, Color color) {
+        super(heigth, width, x, y,  color);
         if (heigth != width)
             throw new IllegalArgumentException();
     }

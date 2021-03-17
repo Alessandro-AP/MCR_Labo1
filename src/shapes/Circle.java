@@ -3,10 +3,10 @@ package shapes;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public class Circle extends Form {
+public abstract class Circle extends Form {
 
-    public Circle(int heigth, int width, int x, int y, int xVel, int yVel, Color color) {
-        super(heigth, width, x, y, xVel, yVel, color);
+    public Circle(int heigth, int width, int x, int y, Color color) {
+        super(heigth, width, x, y,  color);
 //        if (heigth != width)
 //            throw new IllegalArgumentException();
     }
