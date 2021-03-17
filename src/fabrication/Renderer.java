@@ -1,4 +1,6 @@
-package gui;
+package fabrication;
+
+import shapes.Bouncable;
 
 import java.awt.*;
 

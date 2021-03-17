@@ -1,7 +1,6 @@
-package gui;
+package shapes;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 public class Square extends Form {
 

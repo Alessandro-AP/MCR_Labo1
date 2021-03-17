@@ -1,4 +1,4 @@
-package gui;
+package shapes;
 
 import java.awt.*;
 

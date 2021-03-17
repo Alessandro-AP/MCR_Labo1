@@ -1,4 +1,7 @@
-package gui;
+package shapes;
+
+import fabrication.FillRenderer2D;
+import fabrication.Renderer;
 
 import java.awt.*;
 

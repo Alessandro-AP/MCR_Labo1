@@ -1,27 +1,26 @@
 package gui;
 
+import shapes.Form;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedList;
-import java.util.Vector;
-
-import static utils.RandomInt.randomInt;
 
 public class MyWindow extends JFrame implements Displayer , ActionListener {
 
     private static final MyWindow instance = new MyWindow(500, 600);
-
+    private final LinkedList<Object> elements = new LinkedList<>();
     private final JPanel panel;
-
-    private final LinkedList<Form> elements = new LinkedList<>();
+    Timer timer;
 
     public void addForm(Form v) {
         elements.add(v);
     }
 
-    private KeyAdapter keyAdapter;
-
+    public void setElements(LinkedList<?> list){
+        elements.addAll(list);
+    }
     private MyWindow(int width, int heigth) {
         if (width < 1 || heigth < 1)
             throw new IllegalArgumentException("MyWindow size must be positive");
@@ -30,16 +29,15 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
         setSize(width, heigth);
         setLocationRelativeTo(null);
 
-//        panel = new JPanel();
         panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 if(elements == null)
                     return;
                     super.paintComponent(g);
-                    for (Form s : elements) {
-                        s.setG(g);
-                        s.draw();
+                    for (Object s : elements) {
+                        ((Form) s).setG(g);
+                        ((Form) s).draw();
                     }
                 }
 
@@ -47,19 +45,10 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
         add(panel);
         setVisible(true);
 
-
-
-        // tentative de remettre les formes dans la fenetre lors d'une diminution de la fenetre
-//        addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentResized(ComponentEvent e) {
-//                repaint();
-//            }
-//        });
     }
 
     public void startTimer(){
-        Timer timer = new Timer(5, this);
+        timer = new Timer(5, this);
         timer.start();
     }
 
@@ -69,6 +58,32 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
         return instance;
     }
 
+    public void resetWindow(){
+        elements.clear();
+        if(timer != null)
+            timer.stop();
+    }
+
+    public void repaint() { super.repaint(); }
+
+    public void setTitle(String title) {
+        super.setTitle(title);
+    }
+
+    @Override
+    public void addKeyListener(KeyAdapter ka) { super.addKeyListener(ka); }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (Object s : elements) {
+                int xMax = panel.getWidth() - ((Form) s).width();
+                int yMax = panel.getHeight() - ((Form) s).heigth();
+            ((Form) s).setDirection(xMax, yMax);
+            ((Form) s).move();
+        }
+        repaint();
+    }
+    /* GETTERS*/
     public int getWidth() {
         return super.getWidth();
     }
@@ -87,32 +102,6 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
 
     public Graphics2D getGraphics() {
         return (Graphics2D) super.getGraphics();
-    }
-
-    public void repaint() {
-        super.repaint();
-//        panel.paintComponents(getGraphics());
-    }
-
-    public void setTitle(String title) {
-        super.setTitle(title);
-    }
-
-    @Override
-    public void addKeyListener(KeyAdapter ka) {
-//        keyAdapter = ka;
-        super.addKeyListener(ka);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        for (Form s : elements) {
-                int xMax = panel.getWidth() - s.width();
-                int yMax = panel.getHeight() - s.heigth();
-                s.setDirection(xMax, yMax);
-                s.move();
-        }
-        repaint();
     }
 
 }
