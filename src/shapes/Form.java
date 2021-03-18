@@ -31,7 +31,7 @@ public abstract class Form implements Bouncable {
     @Override
     public void move() {
         int xMax = MyWindow.getInstance().getPanelWidth() - width;
-        int yMax = MyWindow.getInstance().getPanelWidth() - heigth;
+        int yMax = MyWindow.getInstance().getPanelHeight() - heigth;
 
         if (x < 0 || x >= xMax)
             xVel = -xVel;
@@ -40,12 +40,6 @@ public abstract class Form implements Bouncable {
 
         x += xVel;
         y += yVel;
-    }
-
-    //-----------------------SETTERS---------------------------------
-
-    public void setRenderer(Renderer renderer) {
-        this.renderer = renderer;
     }
 
     //-----------------------GETTERS---------------------------------

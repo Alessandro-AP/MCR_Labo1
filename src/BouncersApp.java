@@ -52,7 +52,7 @@ public class BouncersApp implements ActionListener {
                         break;
 
                     default:
-                        System.out.println("Wrong key");
+                        System.out.println("Wrong key"); // petit message "appuyez sur une autre touche" ?
                 }
             }
         });
@@ -77,7 +77,7 @@ public class BouncersApp implements ActionListener {
 //            w.repaint();
 //
 //            try {
-//                Thread.sleep(5000);
+//                Thread.sleep(1);
 //            } catch (InterruptedException e) {
 //            }
 //        }
