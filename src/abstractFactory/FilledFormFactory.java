@@ -1,12 +1,12 @@
 package abstractFactory;
 
-
 import shapes.Circle;
 import shapes.FilledCircle;
 import shapes.FilledSquare;
 import shapes.Square;
 
-import java.awt.Color;
+import java.awt.*;
+
 import static utils.RandomInt.randomInt;
 
 public class FilledFormFactory implements FormFactory{

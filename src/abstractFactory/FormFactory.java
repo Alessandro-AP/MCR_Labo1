@@ -1,9 +1,8 @@
 package abstractFactory;
 
+import gui.MyWindow;
 import shapes.Circle;
 import shapes.Square;
-
-import gui.MyWindow;
 
 public interface FormFactory {
 

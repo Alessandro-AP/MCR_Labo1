@@ -1,55 +1,22 @@
 package gui;
 
-import shapes.Form;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.LinkedList;
+import java.awt.event.KeyAdapter;
 
-public class MyWindow extends JFrame implements Displayer , ActionListener {
+public class MyWindow implements Displayer {
 
     private static final MyWindow instance = new MyWindow(500, 600);
-    private final LinkedList<Object> elements = new LinkedList<>();
-    private final JPanel panel;
-    Timer timer;
 
-    public void addElements(LinkedList<?> list){
-        elements.addAll(list);
-    }
-
-    public void addElement(Object elem){
-        elements.add(elem);
-    }
+    private final JFrame frame = new JFrame();
+    private final JPanel panel = new JPanel();
 
     private MyWindow(int width, int heigth) {
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(width, heigth);
-        setLocationRelativeTo(null);
-
-        panel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                if(elements == null)
-                    return;
-                    super.paintComponent(g);
-                    for (Object s : elements) {
-                        ((Form) s).setGraphics2D(g);
-                        ((Form) s).draw();
-                    }
-                }
-
-        };
-
-        add(panel);
-        setVisible(true);
-
-    }
-
-    public void startTimer(){
-        timer = new Timer(5, this);
-        timer.start();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(width, heigth);
+        frame.setLocationRelativeTo(null);
+        frame.add(panel);
+        frame.setVisible(true);
     }
 
     public static MyWindow getInstance() {
@@ -58,39 +25,24 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
         return instance;
     }
 
-    public void resetWindow(){
-        elements.clear();
-        if(timer != null)
-            timer.stop();
-        repaint();
-    }
-
-    public void repaint() { super.repaint(); }
-
     public void setTitle(String title) {
-        super.setTitle(title);
+        frame.setTitle(title);
+    }
+
+    public void repaint() {
+        panel.repaint();
     }
 
     @Override
-    public void addKeyListener(KeyAdapter ka) { super.addKeyListener(ka); }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        for (Object s : elements) {
-                int xMax = panel.getWidth() - ((Form) s).width();
-                int yMax = panel.getHeight() - ((Form) s).heigth();
-            ((Form) s).setDirection(xMax, yMax);
-            ((Form) s).move();
-        }
-        repaint();
-    }
+    public void addKeyListener(KeyAdapter ka) { frame.addKeyListener(ka); }
 
     //--------------------- GETTERS-----------------------------
+
     public int getWidth() {
-        return super.getWidth();
+        return frame.getWidth();
     }
     public int getHeight() {
-        return super.getHeight();
+        return frame.getHeight();
     }
     public int getPanelWidth() {
         return panel.getWidth();
@@ -99,7 +51,7 @@ public class MyWindow extends JFrame implements Displayer , ActionListener {
         return panel.getHeight();
     }
     public Graphics2D getGraphics() {
-        return (Graphics2D) super.getGraphics();
+        return (Graphics2D) panel.getGraphics();
     }
 
 }

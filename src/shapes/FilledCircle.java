@@ -2,18 +2,18 @@ package shapes;
 
 import fabrication.FillRenderer2D;
 
-import java.awt.Color;
+import java.awt.*;
 
+public class FilledCircle extends Circle {
 
-public class FilledCircle extends Circle{
     public FilledCircle(int heigth, int width, int x, int y, Color color) {
         super(heigth, width, x, y, color);
-        setRenderer(new FillRenderer2D());
+        renderer = new FillRenderer2D();
     }
 
     @Override
     public void draw() {
-        renderer.display( g2d, this);
+        renderer.display(g2d, this);
     }
 
 }
