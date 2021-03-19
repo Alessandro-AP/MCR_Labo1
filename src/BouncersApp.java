@@ -1,6 +1,7 @@
+
+import abstractFactory.FormFactory;
 import abstractFactory.BorderFormFactory;
 import abstractFactory.FilledFormFactory;
-import abstractFactory.FormFactory;
 import gui.MyWindow;
 import shapes.Bouncable;
 
@@ -11,90 +12,67 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
+
 public class BouncersApp implements ActionListener {
 
-    private final LinkedList<Bouncable> list = new LinkedList<>();
+    private LinkedList<Bouncable> bouncersList = new LinkedList<>();
+    private final MyWindow window = MyWindow.getInstance();
+    private static final int nbBouncers = 10;
 
-    MyWindow w = MyWindow.getInstance();
-
-    Timer timer = new Timer(1, this);
+    Timer timer = new Timer(5,this);
 
     public BouncersApp() {
-
-        w.setTitle("Bouncers");
-        w.addKeyListener(new KeyAdapter() {
-
+        window.setTitle("BOUNCERS");
+        window.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyPressed(KeyEvent keyEvent) {
 
-                int keyNumber = Character.toUpperCase(e.getKeyChar());
+                timer.start();
 
-                switch (keyNumber) {
-
-                    // Clear window
+                switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_E:
-                        list.clear();
+                            bouncersList.clear();
+                            window.repaint();
+                            timer.stop();
                         break;
-
-                    // Generate 10 filled squares and circles
                     case KeyEvent.VK_F:
                         fabricate(new FilledFormFactory());
                         break;
-
-                    // Generate 10 only border squares and circles
                     case KeyEvent.VK_B:
                         fabricate(new BorderFormFactory());
                         break;
-
-                    //Exit
                     case KeyEvent.VK_Q:
                         System.exit(0);
                         break;
-
-                    default:
-                        System.out.println("Wrong key"); // petit message "appuyez sur une autre touche" ?
+                    default: System.out.println("Wrong key");
                 }
             }
         });
+
     }
 
-    void fabricate(FormFactory factory) {
-        for (int i = 0; i < 10; ++i) {
-            list.add(factory.createSquare());
-            list.add(factory.createCircle());
+    public void fabricate(FormFactory factory) {
+        for (int i = 0; i < nbBouncers; i++) {
+            bouncersList.add(factory.createSquare());
+            bouncersList.add(factory.createCircle());
         }
-    }
-
-    public void run() {
-
-        timer.start();
-
-//        while (true) {
-//            for (Bouncable b : list) {
-//                b.draw();
-//                b.move();
-//            }
-//            w.repaint();
-//
-//            try {
-//                Thread.sleep(1);
-//            } catch (InterruptedException e) {
-//            }
-//        }
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (Bouncable b : list) {
+        for (Bouncable b : bouncersList) {
             b.draw();
             b.move();
         }
-        w.repaint();
+        window.repaint();
     }
 
-    public static void main(String[] args) {
-        new BouncersApp().run();
+    //public void run(){timer.start();}
+
+    public static void main(String... args) {
+
+        new BouncersApp();
     }
+
 
 }

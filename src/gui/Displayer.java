@@ -8,6 +8,6 @@ public interface Displayer {
     int getHeight();
     Graphics2D getGraphics();
     void repaint();
-    void setTitle(String title);
+    void setTitle(String s);
     void addKeyListener(KeyAdapter ka);
 }

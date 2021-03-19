@@ -1,57 +1,74 @@
+/**
+ * @file BoucableSingleton.java
+ * @authors Lagha Oussama & Robel Teklehaimanot
+ * @date 10.03.2019
+ */
 package gui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
+import java.awt.image.BufferedImage;
+
 
 public class MyWindow implements Displayer {
 
-    private static final MyWindow instance = new MyWindow(500, 600);
+    private static MyWindow instance;
+    private static final int WINDOW_WIDTH = 600, WINDOW_HEIGTH = 800;
 
     private final JFrame frame = new JFrame();
     private final JPanel panel = new JPanel();
+    private BufferedImage bufferedImage;
 
-    private MyWindow(int width, int heigth) {
+
+    private MyWindow() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(width, heigth);
+        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGTH);
         frame.setLocationRelativeTo(null);
         frame.add(panel);
         frame.setVisible(true);
+        bufferedImage = (BufferedImage) panel.createImage(WINDOW_WIDTH, WINDOW_HEIGTH);
+        bufferedImage.createGraphics().drawImage(bufferedImage, null, 0, 0);
+
     }
 
     public static MyWindow getInstance() {
         if (instance == null)
-            throw new RuntimeException("MyWindow already exists");
+            instance = new MyWindow();
         return instance;
     }
 
-    public void setTitle(String title) {
-        frame.setTitle(title);
-    }
-
+    @Override
     public void repaint() {
-        panel.repaint();
+        panel.getGraphics().drawImage(bufferedImage, 0, 0, null);
+        bufferedImage = (BufferedImage) panel.createImage(panel.getWidth(), panel.getHeight());
     }
 
     @Override
-    public void addKeyListener(KeyAdapter ka) { frame.addKeyListener(ka); }
+    public void setTitle(String s) {
+        frame.setTitle(s);
+    }
 
-    //--------------------- GETTERS-----------------------------
+    @Override
+    public void addKeyListener(KeyAdapter ka) {
+        frame.addKeyListener(ka);
+    }
 
+//--------------------- GETTERS-----------------------------
+    @Override
     public int getWidth() {
-        return frame.getWidth();
-    }
-    public int getHeight() {
-        return frame.getHeight();
-    }
-    public int getPanelWidth() {
         return panel.getWidth();
     }
-    public int getPanelHeight() {
+
+    @Override
+    public int getHeight() {
         return panel.getHeight();
     }
+
+    @Override
     public Graphics2D getGraphics() {
-        return (Graphics2D) panel.getGraphics();
+        return (Graphics2D) bufferedImage.getGraphics();
     }
+
 
 }

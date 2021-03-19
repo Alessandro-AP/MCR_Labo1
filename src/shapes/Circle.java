@@ -13,6 +13,6 @@ public abstract class Circle extends Form {
 
     @Override
     public Shape getShape() {
-        return new Ellipse2D.Double( x, y, width, heigth);
+        return new Ellipse2D.Double(x, y, width, heigth);
     }
 }

@@ -1,9 +1,11 @@
+
 package shapes;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
+
 
 public abstract class Square extends Form {
-
     public Square(int heigth, int width, int x, int y, Color color) {
         super(heigth, width, x, y,  color);
         if (heigth != width)

@@ -7,7 +7,8 @@ import shapes.Square;
 
 import java.awt.*;
 
-import static utils.RandomInt.randomInt;
+
+import static utils.RandomNumber.randomInt;
 
 public class FilledFormFactory implements FormFactory{
 

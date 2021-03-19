@@ -1,20 +1,20 @@
 package abstractFactory;
 
-import shapes.BorderCircle;
-import shapes.BorderSquare;
+import shapes.BorderedCircle;
+import shapes.BorderedSquare;
 import shapes.Circle;
 import shapes.Square;
 
 import java.awt.*;
 
-import static utils.RandomInt.randomInt;
+import static utils.RandomNumber.randomInt;
 
 public class BorderFormFactory implements FormFactory{
 
     @Override
     public Square createSquare() {
         int sizeSquare = randomInt(elemSizeMin, elemSizeMax);
-        return new BorderSquare(sizeSquare,sizeSquare,
+        return new BorderedSquare(sizeSquare,sizeSquare,
                 randomInt(0, xMax), randomInt(0, yMax),
                 Color.red);
     }
@@ -22,7 +22,7 @@ public class BorderFormFactory implements FormFactory{
     @Override
     public Circle createCircle() {
         int sizeCircle = randomInt(elemSizeMin, elemSizeMax);
-        return new BorderCircle(sizeCircle, sizeCircle,
+        return new BorderedCircle(sizeCircle, sizeCircle,
                 randomInt(0, xMax), randomInt(0, yMax),
                 Color.green);
     }

@@ -1,23 +1,26 @@
+
 package shapes;
 
 import fabrication.Renderer;
 import gui.MyWindow;
+import fabrication.FillRenderer2D;
+
 
 import java.awt.*;
 
-import static utils.RandomInt.randomInt;
+
+import static utils.RandomNumber.randomInt;
 
 public abstract class Form implements Bouncable {
+    private static final MyWindow window = MyWindow.getInstance();//instance unique
 
     protected int x, y;
     protected int heigth, width;
 
     private int xVel = randomInt(-3,3),
                 yVel = randomInt(-3,3);
-
-    final private Color color;
-    protected Renderer renderer;
-    protected Graphics2D g2d = MyWindow.getInstance().getGraphics();
+    protected Color color;
+    Renderer renderer;
 
 
     public Form(int heigth, int width, int x, int y, Color color) {
@@ -28,10 +31,17 @@ public abstract class Form implements Bouncable {
         this.color = color;
     }
 
+
+    @Override
+    public void draw() {
+        renderer.display(window.getGraphics(), this);
+    }
+
+
     @Override
     public void move() {
-        int xMax = MyWindow.getInstance().getPanelWidth() - width;
-        int yMax = MyWindow.getInstance().getPanelHeight() - heigth;
+        int xMax = MyWindow.getInstance().getWidth() - width;
+        int yMax = MyWindow.getInstance().getHeight() - heigth;
 
         if (x < 0 || x >= xMax)
             xVel = -xVel;
@@ -42,10 +52,11 @@ public abstract class Form implements Bouncable {
         y += yVel;
     }
 
-    //-----------------------GETTERS---------------------------------
+//-----------------------GETTERS---------------------------------
     @Override
     public Color getColor() {
         return color;
     }
+
 
 }

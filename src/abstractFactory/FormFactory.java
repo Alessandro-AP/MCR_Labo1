@@ -1,19 +1,20 @@
+
 package abstractFactory;
 
 import gui.MyWindow;
+
 import shapes.Circle;
 import shapes.Square;
 
-public interface FormFactory {
-
+public  interface FormFactory {
     int elemSizeMax = 50,
-        elemSizeMin = 10;
+            elemSizeMin = 10;
 
     MyWindow w = MyWindow.getInstance();
 
-    int xMax = w.getPanelWidth() - elemSizeMax,
-        yMax = w.getPanelHeight() - elemSizeMax;
+    int xMax = w.getWidth() - elemSizeMax,
+        yMax = w.getHeight() - elemSizeMax;
 
-     Square createSquare();
-     Circle createCircle();
+    Square createSquare();
+    Circle createCircle();
 }
