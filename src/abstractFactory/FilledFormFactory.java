@@ -1,3 +1,9 @@
+/*
+ * @file FilledFormFactory.java
+ * @authors Alessandro Parrino, Daniel Sciarra
+ * @date 20.03.2021
+ */
+
 package abstractFactory;
 
 import shapes.Circle;
@@ -6,7 +12,6 @@ import shapes.FilledSquare;
 import shapes.Square;
 
 import java.awt.*;
-
 
 import static utils.RandomNumber.randomInt;
 

@@ -1,3 +1,9 @@
+/*
+ * @file Displayer.java
+ * @authors Alessandro Parrino, Daniel Sciarra
+ * @date 20.03.2021
+ */
+
 package gui;
 
 import java.awt.*;
@@ -8,6 +14,6 @@ public interface Displayer {
     int getHeight();
     Graphics2D getGraphics();
     void repaint();
-    void setTitle(String s);
+    void setTitle(String title);
     void addKeyListener(KeyAdapter ka);
 }

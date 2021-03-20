@@ -1,3 +1,9 @@
+/*
+ * @file BorderedFormFactory.java
+ * @authors Alessandro Parrino, Daniel Sciarra
+ * @date 20.03.2021
+ */
+
 package abstractFactory;
 
 import shapes.BorderedCircle;
@@ -9,7 +15,7 @@ import java.awt.*;
 
 import static utils.RandomNumber.randomInt;
 
-public class BorderFormFactory implements FormFactory{
+public class BorderedFormFactory implements FormFactory{
 
     @Override
     public Square createSquare() {

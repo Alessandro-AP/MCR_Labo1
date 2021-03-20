@@ -1,7 +1,12 @@
+/*
+ * @file BouncersApp.java
+ * @authors Alessandro Parrino, Daniel Sciarra
+ * @date 20.03.2021
+ */
 
-import abstractFactory.FormFactory;
-import abstractFactory.BorderFormFactory;
+import abstractFactory.BorderedFormFactory;
 import abstractFactory.FilledFormFactory;
+import abstractFactory.FormFactory;
 import gui.MyWindow;
 import shapes.Bouncable;
 
@@ -12,39 +17,48 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
-
 public class BouncersApp implements ActionListener {
 
-    private LinkedList<Bouncable> bouncersList = new LinkedList<>();
-    private final MyWindow window = MyWindow.getInstance();
-    private static final int nbBouncers = 10;
+    private static final MyWindow window = MyWindow.getInstance();
+    private final LinkedList<Bouncable> bouncersList = new LinkedList<>();
+    private static final int NB_BOUNCERS = 10;
 
-    Timer timer = new Timer(5,this);
+    Timer timer = new Timer(5, this);
 
     public BouncersApp() {
-        window.setTitle("BOUNCERS");
+        window.setTitle("Bouncers");
         window.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent keyEvent) {
+            public void keyTyped(KeyEvent e) {
 
+                int key = Character.toUpperCase(e.getKeyChar());
                 timer.start();
 
-                switch (keyEvent.getKeyCode()) {
+                switch (key) {
+                    // Clear window
                     case KeyEvent.VK_E:
-                            bouncersList.clear();
-                            window.repaint();
-                            timer.stop();
+                        bouncersList.clear();
+                        window.repaint();
+                        timer.stop();
                         break;
+
+                    // Generate 10 filled squares and circles
                     case KeyEvent.VK_F:
                         fabricate(new FilledFormFactory());
                         break;
+
+                    // Generate 10 only bordered squares and circles
                     case KeyEvent.VK_B:
-                        fabricate(new BorderFormFactory());
+                        fabricate(new BorderedFormFactory());
                         break;
+
+                    // Exit program
                     case KeyEvent.VK_Q:
                         System.exit(0);
                         break;
-                    default: System.out.println("Wrong key");
+
+                    default:
+                        System.out.println("Wrong key");
                 }
             }
         });
@@ -52,7 +66,7 @@ public class BouncersApp implements ActionListener {
     }
 
     public void fabricate(FormFactory factory) {
-        for (int i = 0; i < nbBouncers; i++) {
+        for (int i = 0; i < NB_BOUNCERS; i++) {
             bouncersList.add(factory.createSquare());
             bouncersList.add(factory.createCircle());
         }
@@ -70,9 +84,6 @@ public class BouncersApp implements ActionListener {
     //public void run(){timer.start();}
 
     public static void main(String... args) {
-
         new BouncersApp();
     }
-
-
 }
