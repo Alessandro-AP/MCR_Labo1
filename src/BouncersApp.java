@@ -10,20 +10,16 @@ import abstractFactory.FormFactory;
 import gui.MyWindow;
 import shapes.Bouncable;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
-public class BouncersApp implements ActionListener {
+public class BouncersApp {
 
     private static final MyWindow window = MyWindow.getInstance();
     private final LinkedList<Bouncable> bouncersList = new LinkedList<>();
     private static final int NB_BOUNCERS = 10;
-
-    Timer timer = new Timer(5, this);
 
     public BouncersApp() {
         window.setTitle("Bouncers");
@@ -32,14 +28,11 @@ public class BouncersApp implements ActionListener {
             public void keyTyped(KeyEvent e) {
 
                 int key = Character.toUpperCase(e.getKeyChar());
-                timer.start();
 
                 switch (key) {
                     // Clear window
                     case KeyEvent.VK_E:
                         bouncersList.clear();
-                        window.repaint();
-                        timer.stop();
                         break;
 
                     // Generate 10 filled squares and circles
@@ -72,18 +65,18 @@ public class BouncersApp implements ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        for (Bouncable b : bouncersList) {
-            b.draw();
-            b.move();
+    public void run(){
+
+        while (true) {
+            for (Bouncable b : bouncersList) {
+                b.draw();
+                b.move();
+            }
+            window.repaint();
         }
-        window.repaint();
     }
 
-    //public void run(){timer.start();}
-
     public static void main(String... args) {
-        new BouncersApp();
+        new BouncersApp().run();
     }
 }

@@ -41,10 +41,22 @@ public abstract class Form implements Bouncable {
         int xMax = MyWindow.getInstance().getWidth() - width;
         int yMax = MyWindow.getInstance().getHeight() - heigth;
 
-        if (x < 0 || x >= xMax)
+        if (x < 0) {
             xVelocity = -xVelocity;
-        if (y < 0 || y >= yMax)
+            x = 0;
+        }
+        if (x >= xMax) {
+            xVelocity = -xVelocity;
+            x = xMax;
+        }
+        if (y < 0) {
             yVelocity = -yVelocity;
+            y = 0;
+        }
+        if (y >= yMax) {
+            yVelocity = -yVelocity;
+            y = yMax;
+        }
 
         x += xVelocity;
         y += yVelocity;
