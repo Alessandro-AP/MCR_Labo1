@@ -28,10 +28,10 @@ public abstract class Form implements Bouncable {
 
     /**
      * Constructeur
-     * @param heigth Hauteur de la forme
-     * @param width Largeur  de la forme
      * @param x Abscisse  de la forme
      * @param y Coordonnée de la forme
+     * @param width Largeur  de la forme
+     * @param heigth Hauteur de la forme
      * @param color Couleur de la forme
      */
     public Form(int x, int y, int width, int heigth, Color color) {
