@@ -15,8 +15,16 @@ import java.awt.*;
 
 import static utils.RandomNumber.randomInt;
 
+/**
+ * Fabrique de formes remplies.
+ * Leur taille, position et vecteur de déplacement sont aléatoires.
+ */
 public class FilledFormFactory implements FormFactory{
 
+    /**
+     * Crée un carrée rempli
+     * @return un carrée rempli
+     */
     @Override
     public Square createSquare() {
         int sizeSquare = randomInt(elemSizeMin, elemSizeMax);
@@ -25,6 +33,10 @@ public class FilledFormFactory implements FormFactory{
                 Color.yellow);
     }
 
+    /**
+     * Crée un cercle rempli
+     * @return un cercle rempli
+     */
     @Override
     public Circle createCircle() {
         int sizeCircle = randomInt(elemSizeMin, elemSizeMax);

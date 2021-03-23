@@ -10,23 +10,28 @@ import abstractFactory.FormFactory;
 import gui.MyWindow;
 import shapes.Bouncable;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
+/**
+ * Application principale
+ */
 public class BouncersApp {
 
     private static final MyWindow window = MyWindow.getInstance();
     private final LinkedList<Bouncable> bouncersList = new LinkedList<>();
     private static final int NB_BOUNCERS = 10;
 
+    /**
+     * Constructeur
+     */
     public BouncersApp() {
         window.setTitle("Bouncers");
+
         window.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-
                 int key = Character.toUpperCase(e.getKeyChar());
 
                 switch (key) {
@@ -57,9 +62,14 @@ public class BouncersApp {
                 }
             }
         });
-
     }
 
+    /**
+     * Crée NB_BOUNCERS Bouncables et les ajoute à la
+     * liste de Bouncables du programme
+     *
+     * @param factory Fabrique de formes
+     */
     public void fabricate(FormFactory factory) {
         synchronized (bouncersList) {
             for (int i = 0; i < NB_BOUNCERS; i++) {
@@ -69,18 +79,24 @@ public class BouncersApp {
         }
     }
 
-    public void run(){
+    /**
+     * Lance le dessin et le mouvement des Bouncables
+     */
+    public void run() {
 
-        while (true) {
-            synchronized (bouncersList) {
-                for (Bouncable b : bouncersList) {
-                    b.draw();
-                    b.move();
+        try {
+            while (true) {
+                synchronized (bouncersList) {
+                    for (Bouncable b : bouncersList) {
+                        b.draw();
+                        b.move();
+                    }
                 }
-            }
                 window.repaint();
-
+                Thread.sleep(5);
+            }
         }
+        catch (InterruptedException ignored) {}
     }
 
     public static void main(String... args) {
