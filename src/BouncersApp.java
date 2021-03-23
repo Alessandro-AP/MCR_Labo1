@@ -32,7 +32,9 @@ public class BouncersApp {
                 switch (key) {
                     // Clear window
                     case KeyEvent.VK_E:
-                        bouncersList.clear();
+                        synchronized (bouncersList) {
+                            bouncersList.clear();
+                        }
                         break;
 
                     // Generate 10 filled squares and circles
@@ -59,20 +61,25 @@ public class BouncersApp {
     }
 
     public void fabricate(FormFactory factory) {
-        for (int i = 0; i < NB_BOUNCERS; i++) {
-            bouncersList.add(factory.createSquare());
-            bouncersList.add(factory.createCircle());
+        synchronized (bouncersList) {
+            for (int i = 0; i < NB_BOUNCERS; i++) {
+                bouncersList.add(factory.createSquare());
+                bouncersList.add(factory.createCircle());
+            }
         }
     }
 
     public void run(){
 
         while (true) {
-            for (Bouncable b : bouncersList) {
-                b.draw();
-                b.move();
+            synchronized (bouncersList) {
+                for (Bouncable b : bouncersList) {
+                    b.draw();
+                    b.move();
+                }
             }
-            window.repaint();
+                window.repaint();
+
         }
     }
 
