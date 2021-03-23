@@ -19,7 +19,7 @@ import static utils.RandomNumber.randomInt;
  * Fabrique de formes ayant une bordure (non remplie).
  * Leur taille, position et vecteur de déplacement sont aléatoires.
  */
-public class BorderedFormFactory implements FormFactory{
+public class BorderedFormFactory extends FormFactory{
 
     /**
      * Crée un carrée avec bordure

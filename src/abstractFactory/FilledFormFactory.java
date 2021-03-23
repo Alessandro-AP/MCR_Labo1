@@ -19,7 +19,7 @@ import static utils.RandomNumber.randomInt;
  * Fabrique de formes remplies.
  * Leur taille, position et vecteur de déplacement sont aléatoires.
  */
-public class FilledFormFactory implements FormFactory{
+public class FilledFormFactory extends FormFactory{
 
     /**
      * Crée un carrée rempli

@@ -16,25 +16,25 @@ import shapes.Square;
  * Elle définit la taille min/max des formes et
  * la position max de ceux-ci dans la fenêtre.
  */
-public interface FormFactory {
+public abstract class FormFactory {
 
-    int elemSizeMax = 50,
-        elemSizeMin = 10;
+    protected static final int elemSizeMax = 50,
+                               elemSizeMin = 10;
 
-    MyWindow w = MyWindow.getInstance();
+    private static final MyWindow w = MyWindow.getInstance();
 
-    int xMax = w.getWidth() - elemSizeMax,
-        yMax = w.getHeight() - elemSizeMax;
+    protected final int xMax = w.getWidth() - elemSizeMax,
+                        yMax = w.getHeight() - elemSizeMax;
 
     /**
      * Fabrication de carrée de taille, position et vecteur de déplacement aléatoire
      * @return un carrée
      */
-    Square createSquare();
+    public abstract Square createSquare();
 
     /**
      * Fabrication de cercle de taille, position et vecteur de déplacement aléatoire
      * @return un cercle
      */
-    Circle createCircle();
+    public abstract Circle createCircle();
 }
