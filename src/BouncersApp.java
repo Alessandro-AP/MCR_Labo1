@@ -35,24 +35,24 @@ public class BouncersApp {
                 int key = Character.toUpperCase(e.getKeyChar());
 
                 switch (key) {
-                    // Nettoie la fenêtre
+                    // Clear window
                     case KeyEvent.VK_E:
-                        synchronized (bouncersList) { // gère l'accès concurrent
+                        synchronized (bouncersList) {
                             bouncersList.clear();
                         }
                         break;
 
-                    // Génère 10 carrées et cercles pleins
+                    // Generate 10 filled squares and circles
                     case KeyEvent.VK_F:
                         fabricate(new FilledFormFactory());
                         break;
 
-                    // Génère 10 carrées et cercles avec bordure (non-remplis)
+                    // Generate 10 only bordered squares and circles
                     case KeyEvent.VK_B:
                         fabricate(new BorderedFormFactory());
                         break;
 
-                    // Termine programme
+                    // Exit program
                     case KeyEvent.VK_Q:
                         System.exit(0);
                         break;
@@ -67,6 +67,7 @@ public class BouncersApp {
     /**
      * Crée NB_BOUNCERS Bouncables et les ajoute à la
      * liste de Bouncables du programme
+     *
      * @param factory Fabrique de formes
      */
     public void fabricate(FormFactory factory) {
@@ -79,8 +80,7 @@ public class BouncersApp {
     }
 
     /**
-     * Initialise le dessin et le mouvement des Bouncables
-     * et rafraichit l'affichage
+     * Lance le dessin et le mouvement des Bouncables
      */
     public void run() {
 
@@ -99,10 +99,6 @@ public class BouncersApp {
         catch (InterruptedException ignored) {}
     }
 
-    /**
-     * Start le programme
-     * @param args arguments de la ligne de commande
-     */
     public static void main(String... args) {
         new BouncersApp().run();
     }

@@ -28,9 +28,9 @@ public class BorderedFormFactory implements FormFactory{
     @Override
     public Square createSquare() {
         int sizeSquare = randomInt(elemSizeMin, elemSizeMax);
-        return new BorderedSquare(sizeSquare,sizeSquare,
-                randomInt(0, xMax), randomInt(0, yMax),
-                Color.red);
+        return new BorderedSquare(randomInt(0, xMax), randomInt(0, yMax),
+                                  sizeSquare,sizeSquare,
+                                  Color.red);
     }
 
     /**
@@ -40,8 +40,8 @@ public class BorderedFormFactory implements FormFactory{
     @Override
     public Circle createCircle() {
         int sizeCircle = randomInt(elemSizeMin, elemSizeMax);
-        return new BorderedCircle(sizeCircle, sizeCircle,
-                randomInt(0, xMax), randomInt(0, yMax),
-                Color.green);
+        return new BorderedCircle(randomInt(0, xMax), randomInt(0, yMax),
+                                  sizeCircle, sizeCircle,
+                                  Color.green);
     }
 }

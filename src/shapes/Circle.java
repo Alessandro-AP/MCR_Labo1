@@ -16,14 +16,14 @@ public abstract class Circle extends Form {
 
     /**
      * Constructeur d'un cercle
-     * @param heigth Hauteur du cercle
-     * @param width Largeur du cercle
      * @param x Abscisse du cercle
      * @param y Coordonnée du cercle
+     * @param width Largeur du cercle
+     * @param heigth Hauteur du cercle
      * @param color Couleur du cercle
      */
-    public Circle(int heigth, int width, int x, int y, Color color) {
-        super(heigth, width, x, y,  color);
+    public Circle(int x, int y, int width, int heigth, Color color) {
+        super(x, y, width, heigth, color);
         if (heigth != width)
             throw new IllegalArgumentException();
     }

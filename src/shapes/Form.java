@@ -34,11 +34,11 @@ public abstract class Form implements Bouncable {
      * @param y Coordonnée de la forme
      * @param color Couleur de la forme
      */
-    public Form(int heigth, int width, int x, int y, Color color) {
-        this.heigth = heigth;
-        this.width = width;
+    public Form(int x, int y, int width, int heigth, Color color) {
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.heigth = heigth;
         this.color = color;
     }
 
