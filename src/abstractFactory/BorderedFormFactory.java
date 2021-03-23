@@ -15,8 +15,16 @@ import java.awt.*;
 
 import static utils.RandomNumber.randomInt;
 
+/**
+ * Fabrique de formes ayant une bordure (non remplie).
+ * Leur taille, position et vecteur de déplacement sont aléatoires.
+ */
 public class BorderedFormFactory implements FormFactory{
 
+    /**
+     * Crée un carrée avec bordure
+     * @return un carrée avec bordure
+     */
     @Override
     public Square createSquare() {
         int sizeSquare = randomInt(elemSizeMin, elemSizeMax);
@@ -25,6 +33,10 @@ public class BorderedFormFactory implements FormFactory{
                 Color.red);
     }
 
+    /**
+     * Crée un cercle avec bordure
+     * @return un cercle avec bordure
+     */
     @Override
     public Circle createCircle() {
         int sizeCircle = randomInt(elemSizeMin, elemSizeMax);

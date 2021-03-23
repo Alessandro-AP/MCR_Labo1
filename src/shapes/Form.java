@@ -13,9 +13,12 @@ import java.awt.*;
 
 import static utils.RandomNumber.randomInt;
 
+/**
+ * Classe abstraite permettant de créer une forme
+ */
 public abstract class Form implements Bouncable {
 
-    private static final MyWindow window = MyWindow.getInstance(); //instance unique
+    private static final MyWindow window = MyWindow.getInstance();
     protected int x, y;
     protected final int heigth, width;
     private final Color color;
@@ -23,6 +26,14 @@ public abstract class Form implements Bouncable {
                 yVelocity = randomInt(-3,3);
     protected Renderer renderer;
 
+    /**
+     * Constructeur
+     * @param heigth Hauteur de la forme
+     * @param width Largeur  de la forme
+     * @param x Abscisse  de la forme
+     * @param y Coordonnée de la forme
+     * @param color Couleur de la forme
+     */
     public Form(int heigth, int width, int x, int y, Color color) {
         this.heigth = heigth;
         this.width = width;
@@ -31,15 +42,23 @@ public abstract class Form implements Bouncable {
         this.color = color;
     }
 
+    /**
+     * Dessine une forme
+     */
     @Override
     public void draw() {
         renderer.display(window.getGraphics(), this);
     }
 
+    /**
+     * Déplace une forme dans une fenêtre. Si la forme atteint le bord de la
+     * fenêtre, elle rebondit.
+     * Si la fenêtre est réduite la forme est ramenée à l'intérieur.
+     */
     @Override
     public void move() {
-        int xMax = MyWindow.getInstance().getWidth() - width;
-        int yMax = MyWindow.getInstance().getHeight() - heigth;
+        int xMax = window.getWidth() - width;
+        int yMax = window.getHeight() - heigth;
 
         if (x < 0) {
             xVelocity = -xVelocity;
@@ -62,7 +81,10 @@ public abstract class Form implements Bouncable {
         y += yVelocity;
     }
 
-//-----------------------GETTER---------------------------------
+    /**
+     * Récupère la couleur d'une forme
+     * @return la couleur d'une forme
+     */
     @Override
     public Color getColor() {
         return color;
